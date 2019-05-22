@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "378427725599",
+    "firebase_url": "https://fir-signupflow.firebaseio.com",
+    "project_id": "fir-signupflow",
+    "storage_bucket": "fir-signupflow.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378427725599:android:e6dc0cebfd455c13",
+        "android_client_info": {
+          "package_name": "com.sanmiaderibigbe.firebasesignupflow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378427725599-4urb53f5ifg1cugskcsps37c842m61ph.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sanmiaderibigbe.firebasesignupflow",
+            "certificate_hash": "d3e50fcc4b453135cad0e613c989b48d5389ee07"
+          }
+        },
+        {
+          "client_id": "378427725599-eb5u3gvaceq93773ubtg6bj1eqq6cerb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF4mK415sxHW1BoWEj52eSlzZbkD2lxwk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378427725599-eb5u3gvaceq93773ubtg6bj1eqq6cerb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
