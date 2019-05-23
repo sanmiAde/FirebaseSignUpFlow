@@ -17,10 +17,7 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
 
 
     lateinit var firebaseAuth: FirebaseAuth
-    lateinit var googleApiClient: GoogleApiClient
-    lateinit var googleSignClient: GoogleApiClient
-    lateinit var signInOptions: GoogleSignInOptions
-    lateinit var signInClient: GoogleApiClient
+
 
     override fun onConnectionFailed(p0: ConnectionResult) {
 
