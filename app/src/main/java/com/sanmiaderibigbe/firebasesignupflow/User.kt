@@ -1,3 +1,3 @@
 package com.sanmiaderibigbe.firebasesignupflow
 
-data class User(val username: String, val email: String, val phoneNumber: String)
+data class User(var username: String = "", var email: String = "", var phoneNumber: String = "")

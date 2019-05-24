@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.material.snackbar.Snackbar
@@ -13,15 +14,10 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.content_login.*
 
 
-class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedListener {
+class LoginActivity : AppCompatActivity() {
 
 
-    lateinit var firebaseAuth: FirebaseAuth
 
-
-    override fun onConnectionFailed(p0: ConnectionResult) {
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,33 +29,37 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
                 .setAction("Action", null).show()
         }
 
-        firebaseAuth = FirebaseAuth.getInstance()
-        if (firebaseAuth.currentUser != null) {
+
+        val liveData = ViewModelProviders.of(this).get(LoginViewModel::class.java!!)
+
+
+        if (liveData.isSignedIn()) {
             startActivity(Intent(applicationContext, MainActivity::class.java))
         }
+
 
         LoginButton.setOnClickListener {
             val email = emailInput.editText?.text.toString()
             val password = passwordInput.editText?.text.toString()
             Toast.makeText(this, "$email $password", Toast.LENGTH_SHORT).show()
-            firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    when (task.isSuccessful) {
-                        true -> {
-                            startActivity(
-                                Intent(
-                                    applicationContext,
-                                    MainActivity::class.java
-                                ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            )
-                            finish()
-                        }
-                        false -> {
 
-                        }
+            liveData.login(email, password).observe(this, Observer {
+                when {
+                    it.isSuccessful -> startActivity(
+                        Intent(
+                            applicationContext,
+                            MainActivity::class.java
+                        ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    )
+
+                   else -> {
+
+                        Toast.makeText(this,  it.error()?.localizedMessage.toString(), Toast.LENGTH_SHORT).show()
 
                     }
                 }
+            })
+
         }
 
 

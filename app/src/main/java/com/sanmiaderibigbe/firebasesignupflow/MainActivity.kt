@@ -32,5 +32,13 @@ class MainActivity : AppCompatActivity() {
             )
             finish()
         }
+
+        userlist.setOnClickListener {
+            startActivity(
+                Intent(
+                    applicationContext,
+                    UserListActivity::class.java
+                ))
+        }
     }
 }
